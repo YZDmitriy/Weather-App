@@ -20,10 +20,12 @@ body {
   width: 400px;
   border-radius: 7px;
   background: #fff;
+  box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
 
   header {
     color: #43affc;
     font-size: 21px;
+    font-weight: 500;
     padding: 16px 15px;
     display: flex;
     align-items: center;
@@ -31,23 +33,35 @@ body {
   }
 
   .input-part {
-    display: none;
     margin: 20px 25px 30px;
   }
 
   .weather-part {
     margin: 30px 0 0;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
 }
 
+.wrapper.active header i {
+  margin-left: 5px;
+  font-size: 30px;
+}
+
+.wrapper.active .input-part {
+  display: none;
+}
+
+.wrapper.active .weather-part {
+  display: flex;
+}
+
 header {
   i {
     cursor: pointer;
-    font-size: 30px;
+    font-size: 0em;
     margin-right: 8px;
   }
 }
@@ -94,11 +108,16 @@ header {
     border: 2px solid #43affc;
   }
 
+  input::placeholder {
+    color: #bfbfbf;
+  }
+
   .separator {
     height: 1px;
     width: 100%;
     margin: 25px 0;
     background: #ccc;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,7 +125,7 @@ header {
 
   .separator::before {
     content: 'or';
-    color: #ccc;
+    color: #b3b3b3;
     font-size: 19px;
     padding: 0 15px;
     background: #fff;
@@ -116,6 +135,10 @@ header {
     color: #fff;
     background: #43affc;
     cursor: pointer;
+    transition: 0.3s ease;
+  }
+  button:hover {
+    background: #1d9ffc;
   }
 }
 
@@ -137,11 +160,19 @@ header {
     display: block;
   }
 
+  .weather {
+    font-size: 21px;
+    text-align: center;
+    margin: -5px 20px 15px;
+  }
+
   .location {
     display: flex;
-    align-items: center;
-    font-size: 21px;
+    font-size: 19px;
+    padding: 0 20px;
+    text-align: center;
     margin-bottom: 30px;
+    align-items: flex-start;
   }
 
   .bottom-details {
@@ -157,6 +188,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 15px 0;
   }
 }
 
@@ -165,4 +197,38 @@ header {
     font-size: 22px;
     margin-right: 5px;
   }
+}
+
+.column i {
+  color: #43affc;
+  font-size: 40px;
+}
+
+.column.humidity {
+  border-left: 1px solid #bfbfbf;
+}
+
+.column .details{
+  margin-left: 3px;
+}
+
+.details .temp,
+.humidity span {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: -3px;
+}
+
+.details .temp .deg {
+  margin: 0;
+  font-size: 17px;
+  padding: 0 2px 0 1px;
+}
+
+.column .details p{
+  font-size: 14px;
+  margin-top: -6px;
+}
+.humidity i{
+  font-size: 37px;
 }
