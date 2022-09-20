@@ -142,6 +142,24 @@ header {
   }
 }
 
+button[type='submit'] {
+  position: absolute;
+  height: 55px;
+  width: 50px;
+  margin-left: -50px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  
+  
+
+  img {
+    width: 30px;
+    height: 30px;
+    margin-top: 10px;
+  }
+}
+
 .weather-part {
   img {
     max-width: 125px;
@@ -208,7 +226,7 @@ header {
   border-left: 1px solid #bfbfbf;
 }
 
-.column .details{
+.column .details {
   margin-left: 3px;
 }
 
@@ -225,10 +243,12 @@ header {
   padding: 0 2px 0 1px;
 }
 
-.column .details p{
+.column .details p {
   font-size: 14px;
   margin-top: -6px;
 }
-.humidity i{
+.humidity i {
   font-size: 37px;
 }
+
+
