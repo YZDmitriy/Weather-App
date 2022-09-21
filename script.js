@@ -5,7 +5,7 @@ inputField = document.querySelector('input');
 searchBtn = document.querySelector('.search');
 locationBtn = document.querySelector('.location');
 
-const apyKey = 'e1c339c24c4992ae5ac3b7601573ab9b';
+const apiKey = 'e1c339c24c4992ae5ac3b7601573ab9b';
 
 inputField.addEventListener('keyup', (e) => {
   //Если пользователь нажал кнопку, а входное значение не пусто
@@ -21,11 +21,11 @@ searchBtn.addEventListener('click', () => {
 });
 
 function requestApi(city) {
-  let api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apyKey}`;
+  let apiCity = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
   infoText.innerText = 'Getting weather details...';
   infoText.classList.add('pending');
 
-  fetch(api)
+  fetch(apiCity)
     .then((response) => response.json())
     .then((response) => weatherDetails(response));
 }
@@ -42,11 +42,20 @@ locationBtn.addEventListener('click', () => {
   }
 });
 
-
 function onSuccess(position) {
-  console.log(position)
+  const { latitude, longitude } = position.coords;
+  // let apiLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+  let apiLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+  infoText.innerText = 'Getting weather details...';
+  infoText.classList.add('pending');
+
+  fetch(apiLocation)
+    .then((response) => response.json())
+    .then((response) => weatherDetails(response));
+
 }
 
 function onError(error) {
-  console.log(error)
+  infoText.innerText = error.message;
+  infoText.classList.add('error');
 }
