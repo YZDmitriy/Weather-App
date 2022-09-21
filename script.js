@@ -44,7 +44,6 @@ locationBtn.addEventListener('click', () => {
 
 function onSuccess(position) {
   const { latitude, longitude } = position.coords;
-  // let apiLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
   let apiLocation = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
   infoText.innerText = 'Getting weather details...';
   infoText.classList.add('pending');
@@ -94,9 +93,14 @@ function weatherDetails(info){
       weatherPart.querySelector(".temp .numb-2").innerText = Math.floor(feels_like);
       weatherPart.querySelector(".humidity span").innerText = `${humidity}%`;
       infoText.classList.remove("pending", "error");
-      // infoText.innerText = "";
-      // inputField.value = "";
+      infoText.innerText = "";
+      inputField.value = "";
       wrapper.classList.add("active");
       console.log(info)
   }
 }
+
+
+arrowBack.addEventListener("click", ()=>{
+  wrapper.classList.remove("active");
+});
