@@ -3,7 +3,7 @@ inputPart = document.querySelector('.input-part');
 infoText = document.querySelector('.info-text');
 inputField = document.querySelector('input');
 searchBtn = document.querySelector('.search');
-
+locationBtn = document.querySelector('.location');
 
 const apyKey = 'e1c339c24c4992ae5ac3b7601573ab9b';
 
@@ -22,12 +22,31 @@ searchBtn.addEventListener('click', () => {
 
 function requestApi(city) {
   let api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apyKey}`;
+  infoText.innerText = 'Getting weather details...';
+  infoText.classList.add('pending');
+
   fetch(api)
     .then((response) => response.json())
     .then((response) => weatherDetails(response));
 }
 
-
 function weatherDetails(info) {
-  console.log(info)
+  console.log(info);
+}
+
+locationBtn.addEventListener('click', () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  } else {
+    alert('Your brouser not support geolocation api');
+  }
+});
+
+
+function onSuccess(position) {
+  console.log(position)
+}
+
+function onError(error) {
+  console.log(error)
 }
